@@ -11,16 +11,6 @@
 | Scaling               | Vertical (RAM)      | Horizontal (more nodes)              |
 | Client library needed | Basic `redis` works | Needs cluster support like `ioredis` |
 
-
-#   Initialize the Cluster
-
-```sh
-docker run -it --rm --net=host redis:8.0.2 \
-  redis-cli --cluster create \
-  127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 \
-  --cluster-replicas 0
-```
-
 ### Create script to generate redis.config file  `generate-redis-configs.sh`
 
 This script sets up the configuration files needed to run a Redis Cluster on a single machine. It works by looping through three port numbers: 7000, 7001, and 7002.
@@ -46,6 +36,21 @@ chmod +x generate-redis-configs.sh
 ./generate-redis-configs.sh
 ```
 
+# Run Redis
+
+```sh
+docker compose up -d
+```
+
+
+#   Initialize the Cluster
+
+```sh
+docker run -it --rm --net=host redis:8.0.2 \
+  redis-cli --cluster create \
+  127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 \
+  --cluster-replicas 0
+```
 
 
 # Test cluster with node.js 
