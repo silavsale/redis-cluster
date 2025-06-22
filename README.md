@@ -23,7 +23,6 @@ The script also sets Redis to announce its IP address as 127.0.0.1 (localhost) a
 
 When the script is done running, you’ll have three folders (7000, 7001, and 7002), each with a Redis config file inside. These config files are used later when running the Redis containers so that each one knows how to participate in the cluster.
 
-
 - Make the script executable:
 
 ```sh
@@ -42,7 +41,6 @@ chmod +x generate-redis-configs.sh
 docker compose up -d
 ```
 
-
 #   Initialize the Cluster
 
 ```sh
@@ -51,7 +49,6 @@ docker run -it --rm --net=host redis:8.0.2 \
   127.0.0.1:7000 127.0.0.1:7001 127.0.0.1:7002 \
   --cluster-replicas 0
 ```
-
 
 # Test cluster with node.js 
 

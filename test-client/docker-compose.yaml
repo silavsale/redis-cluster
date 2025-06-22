@@ -1,0 +1,10 @@
+services:
+  redis-test-client:
+    build: .                 
+    container_name: redis-test-client
+    networks:
+      - my-network             
+
+networks:
+  my-network:
+    external: true

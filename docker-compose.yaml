@@ -1,8 +1,13 @@
+version: '3.8'
+
 services:
   redis1:
     image: redis:8.0.2
     container_name: redis1
-    network_mode: host
+    networks:
+      - my-network
+    ports:
+      - "7000:7000"
     volumes:
       - ./7000/redis.conf:/usr/local/etc/redis/redis.conf
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
@@ -10,7 +15,10 @@ services:
   redis2:
     image: redis:8.0.2
     container_name: redis2
-    network_mode: host
+    networks:
+      - my-network
+    ports:
+      - "7001:7001"
     volumes:
       - ./7001/redis.conf:/usr/local/etc/redis/redis.conf
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
@@ -18,7 +26,15 @@ services:
   redis3:
     image: redis:8.0.2
     container_name: redis3
-    network_mode: host
+    networks:
+      - my-network
+    ports:
+      - "7002:7002"
     volumes:
       - ./7002/redis.conf:/usr/local/etc/redis/redis.conf
     command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+networks:
+  my-network:
+    name: my-network
+    driver: bridge
