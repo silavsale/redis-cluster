@@ -1,0 +1,24 @@
+services:
+  redis1:
+    image: redis:8.0.2
+    container_name: redis1
+    network_mode: host
+    volumes:
+      - ./7000/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis2:
+    image: redis:8.0.2
+    container_name: redis2
+    network_mode: host
+    volumes:
+      - ./7001/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  redis3:
+    image: redis:8.0.2
+    container_name: redis3
+    network_mode: host
+    volumes:
+      - ./7002/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
